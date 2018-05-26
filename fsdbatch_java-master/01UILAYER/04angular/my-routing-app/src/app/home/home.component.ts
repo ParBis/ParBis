@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {HomeService} from './home.service'
+import {HomeService} from './home.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -13,16 +14,18 @@ export class HomeComponent implements OnInit {
     //ngOnInit() {}
 
     private todos;
+    todoObj : object;
+    //private index;
 
-    constructor(public homeService: HomeService) {
-        console.log('CONSTRUCTOR **')
+    constructor(public homeService: HomeService, private router: Router) {
+        console.log('Home CONSTRUCTOR **')
     }
   
   ngOnInit() { 
     console.log('ON INIT **')
     this.homeService.getTodos()
     .then((res) =>{
-        console.log('In the component' ,res);
+        console.log('In the home component' ,res);
         this.todos = res;
     })
 }
@@ -30,12 +33,9 @@ export class HomeComponent implements OnInit {
 
 
 addTodo(todo: string, todo1: string, todo2: string, todo3: string){
-    
-
-
     this.homeService.addTodo({name: todo, age: todo1, contact: todo2, email: todo3})
     .then((res) =>{
-        console.log('In the component -- post' ,res);
+        console.log('In the Home component -- post' ,res);
         this.todos = res;
     })
 }
@@ -45,6 +45,17 @@ removeTodo(index: number){
     .then((res) =>{
         console.log('In the component -- remove' ,res);
         this.todos = res;
+    })
+}
+
+
+
+editTodo(index: number){
+    this.homeService.editTodo(index)
+    .then((res) =>{
+        console.log('In the component -- edit' ,res);
+        this.todoObj = res;
+        this.router.navigateByUrl('/edit');
     })
 }
 

@@ -1,12 +1,12 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-<p>
+<!--p>
   home works!
    
-</p>
+</p-->
  
 
-<div class="form-group row">
+<!--div class="form-group row">
     <div class="col-xs-2">
       <label>Name</label>
     </div>
@@ -37,11 +37,11 @@
 
 <div class="form-group row">
   <button class="btn btn-primary" (click) = "addTodo(todo.value, todo1.value, todo2.value, todo3.value)">Add Todo</button>
-</div>
+</div-->
 
 
 <div class="form-group row">
-  <a routerLink = "/about/Delhi">Add User</a>
+    <a routerLink = "/about">Add User</a>
 </div>
 
   <div class="container">  
@@ -59,7 +59,7 @@
       <tbody>
         <tr *ngFor="let todo of todos;let i = index">
           <td>{{i}}</td>
-          <td>{{todo.name}}</td>
+          <td><a (click)="editTodo(i)">{{todo.name}}</a></td>
           <td>{{todo.age}}</td>
           <td>{{todo.contact}}</td>
           <td>{{todo.email}}</td>
